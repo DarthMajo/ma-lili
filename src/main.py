@@ -3,7 +3,8 @@ from lang import toki
 
 #MAIN======================================================================MAIN
 def main():
-    print(toki.TokiPona.AllowableSyllables())
+    t = toki.TokiPona()
+    print(t.GenerateWord())
 
 if __name__ == "__main__":
     main()
