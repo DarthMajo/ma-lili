@@ -1,4 +1,4 @@
-#https://en.wikipedia.org/wiki/Biome#/media/File:Lifezones_Pengo.svg
+#Contains the world and the generator for the world
 import math
 
 class World:
@@ -37,3 +37,6 @@ class WorldGen:
         #This uses the sin function to make a mirror image of temperature from north to south poles
         tempMap = [[(self.TEMPERATURE_EQUATOR - self.TEMPERATURE_POLAR) * math.sin(((0.5 / int(self.y / 2)) * i) * math.pi) + self.TEMPERATURE_POLAR] * self.y for i in range(self.x)]
         return tempMap
+
+#NOTES====================================================================NOTES
+#https://en.wikipedia.org/wiki/Biome#/media/File:Lifezones_Pengo.svg
