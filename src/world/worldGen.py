@@ -53,6 +53,30 @@ class WorldTile:
         else:
             return '.'
 
+    def GetElevation(self):
+        """Returns the elevation of this tile in meters.
+        
+        Returns:
+            The elevation of this tile in meters (int)
+        """
+        return self.elevation
+
+    def GetRainfall(self):
+        """Returns the average rainfall of this tile in mm.
+        
+        Returns:
+            The average rainfall of this tile in mm (int)
+        """
+        return self.rainfall
+
+    def GetTemperature(self):
+        """Returns the average temperature of this tile in C.
+        
+        Returns:
+            The average temperature of this tile in C (double)
+        """
+        return self.temperature
+
 class WorldGen:
     def __init__(self, x, y):
         """Constructor for the WorldGen class.
