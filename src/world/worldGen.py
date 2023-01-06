@@ -3,15 +3,55 @@ import math
 import random
 
 class World:
-    def __init__(self, x, y):
+    def __init__(self, x, y, tilemap):
         """Constructor for the World class.
 
         Parameters:
             x (int): The width of the world in kilometers
             y (int): The height of the world in kilometers
+            tileMap (list[list[WorldTile]]): The world itself
         """
         self.x = x
         self.y = y
+        self.tilemap = tilemap
+
+    def Display(self):
+        stringBuilder = ""
+        for y in range(0, self.y):
+            for x in range(0, self.x):
+                stringBuilder += self.tilemap[x][y].GetChar()
+            stringBuilder += "\n"
+        print(stringBuilder)
+
+class WorldTile:
+    def __init__(self, elevation, rainfall, temperature):
+        """Constructor for the WorldTile class.
+        
+        Parameters:
+            elevation (int): The elevation of this tile in meters.
+            rainfall (int): The avg. rainfall of this tile in mm.
+            temperature (double): The avg. temperature of this tile (in C).
+        """
+        self.elevation = elevation
+        self.rainfall = rainfall
+        self.temperature = temperature
+
+    def GetChar(self):
+        """Returns a character of how we can visually see this tile.
+        
+        Returns:
+            A char
+        """
+        if(self.elevation <= 0):
+            return '~'
+        elif(self.elevation >= 2500):
+            return '^'
+        elif(self.elevation < 2500 and self.elevation > 1666):
+            return '\''
+        elif(self.elevation <= 1666 and self.elevation > 834):
+            return ','
+        else:
+            return '.'
 
 class WorldGen:
     def __init__(self, x, y):
@@ -25,6 +65,25 @@ class WorldGen:
         self.y = y
         self.TEMPERATURE_POLAR = -20.0
         self.TEMPERATURE_EQUATOR = 32.0
+
+    def GenerateWorld(self):
+        """It's generating time!!!
+        
+        Returns:
+            The world that ma lili sits on
+        """
+        #Generate the parameters of the world
+        eleMap = self.generateElevationMap()
+        rainMap = self.generateRainfallMap()
+        tempMap = self.generateTemperatureMap()
+
+        #Turn data arrays into tiles
+        world = [[WorldTile] * self.y for _ in range(self.x)]
+        for y in range(0, self.y):
+            for x in range(0, self.x):
+                world[x][y] = WorldTile(eleMap[x][y], rainMap[x][y], tempMap[x][y])
+        return world
+
 
     def generateElevationMap(self):
         """Private method for generating elevation on the planet.

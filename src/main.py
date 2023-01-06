@@ -5,7 +5,8 @@ from world import worldGen
 #MAIN======================================================================MAIN
 def main():
     wg = worldGen.WorldGen(7, 7)
-    print(wg.generateElevationMap())
+    world = worldGen.World(7, 7, wg.GenerateWorld())
+    world.Display()
 
 if __name__ == "__main__":
     main()
