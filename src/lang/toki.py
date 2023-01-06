@@ -57,7 +57,15 @@ class TokiPona:
             syllableCount = 2
 
         #Append random syllables
-        for _ in range(syllableCount):
-            word += self.syls[random.randint(0, len(self.syls))]
+        for i in range(syllableCount):
+            #A toki pona word initial syllable only can start with a vowel
+            if(i == 0):
+                word += self.syls[random.randint(0, len(self.syls))]
+            else:
+                syllable = self.syls[random.randint(10, len(self.syls))]
+                if((syllable[0] == 'm' or syllable[0] == 'n') and word[len(word) - 1] == 'n'):
+                    word = word[:-1]
+                word += syllable
 
         return word
+    
