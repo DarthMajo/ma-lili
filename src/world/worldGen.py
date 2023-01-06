@@ -1,5 +1,6 @@
 #Contains the world and the generator for the world
 import math
+import random
 
 class World:
     def __init__(self, x, y):
@@ -25,8 +26,31 @@ class WorldGen:
         self.TEMPERATURE_POLAR = -20.0
         self.TEMPERATURE_EQUATOR = 32.0
 
-    def __generateRainfallMap(self):
-        pass
+    def generateElevationMap(self):
+        """Private method for generating elevation on the planet.
+        
+        Returns:
+            A 2-D array of ints representing altitude in meters above sea level.
+        """
+        #TODO: This should be improved in the future
+        eleMap = [[0] * self.y for _ in range(self.x)]
+        for y in range(0, self.y):
+            for x in range(0, self.x):
+                eleMap[x][y] = random.randint(-10971, 8849)
+        return eleMap
+
+    def generateRainfallMap(self):
+        """Private method for generating rainfall on the planet.
+        
+        Returns:
+            A 2-D array of ints representing millimeters of rainfall.
+        """
+        #TODO: This should be improved in the future
+        rainMap = [[0] * self.y for _ in range(self.x)]
+        for y in range(0, self.y):
+            for x in range(0, self.x):
+                rainMap[x][y] = random.randint(0, 16000)
+        return rainMap
 
     def generateTemperatureMap(self):
         """Private method for generating temperature on the planet.

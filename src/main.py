@@ -5,7 +5,7 @@ from world import worldGen
 #MAIN======================================================================MAIN
 def main():
     wg = worldGen.WorldGen(7, 7)
-    print(wg.generateTemperatureMap())
+    print(wg.generateElevationMap())
 
 if __name__ == "__main__":
     main()
